@@ -59,15 +59,15 @@ const UserDetail = () => {
      )}
      <div className="w-full space-y-4 mb-8">
       <div className="flex items-center border-b border-gray-100 pb-2">
-        <span className="w-24 font-medium text-graay-500 ">Name</span>
+        <span className="w-24 font-medium text-gray-500 ">Name</span>
         <span className="text-lg text-[#333] font-semibold">{user.EmpName}</span>
       </div>
       <div className="flex items-center border-b border-gray-100 pb-2">
-        <span className="w-24 font-medium text-graay-500">Age</span>
+        <span className="w-24 font-medium text-gray-500">Age</span>
         <span className="text-lg text-[#333] font-semibold" >{user.EmpAge}</span>
       </div>
       <div className="flex items-center border-b border-gray-100 pb-2"> 
-        <span className="w-24 font-medium text-graay-500">Dept</span>
+        <span className="w-24 font-medium text-gray-500">Dept</span>
         <span className="text-lg text-[#333] font-semibold">{user.EmpDept}</span>
       </div>
      </div>
@@ -76,7 +76,7 @@ const UserDetail = () => {
       transition-colors" to={`/edit/${user.Id}`}>
         Edit Details</Link>
       <button className="flex-1 py-2.5 bg-red-600 text-white font-medium rounded hover:bg-red-700
-       transition-colors disabled:bg-grap-400" onClick={handleDelete}>Delete User</button>
+       transition-colors disabled:bg-gray-400" onClick={handleDelete}>Delete User</button>
       <Link className="w-full text-center py-2.5 bg-gray-500 text-white font-medium 
       rounded hover:bg-gray-600 transition-colors mt-2" to="/" >Back to List</Link>
      </div>

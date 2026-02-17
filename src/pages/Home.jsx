@@ -71,7 +71,7 @@ const Home = () => {
           </tr>
         </thead>
         <tbody>
-          {data.users.length > 0 ? (
+          {data?.users?.length > 0 ? (
             data.users.map((user) => (
               <tr key={user.Id}>
                 <td className="p-4 text-[#333]">{user.EmpName}</td>
@@ -94,7 +94,7 @@ const Home = () => {
       </table>
     </div>
     <div>
-      {data.users.length > 0 && (
+      {data?.users?.length > 0 && (
         <div className="flex justify-center items-center gap-2.5 mt-5">
          <button className="px-4 py-2 text-base bg-green-600 text-white border-none rounded-md cursor-pointer 
          disabled:bg-gray-300 disabled:cursor-not-allowed hover:bg-green-700 transition-colors"

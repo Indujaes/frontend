@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const AddUser = () => {
   const API_URL = 
   process.env.REACT_APP_API_URL;
-  const [preview, setPreview] = useState(false);
+  const [preview, setPreview] = useState(null);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 

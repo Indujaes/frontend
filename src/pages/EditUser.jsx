@@ -16,7 +16,7 @@ const EditUser = () => {
    
   const mutation =  useMutation({
     mutationFn: (formData) => 
-      axios.put(`{API_URL}/api/users/${Id}`, formData, {
+      axios.put(`${API_URL}/api/users/${Id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       }),
     onSuccess: () => {
@@ -56,7 +56,7 @@ const EditUser = () => {
       name="EmpName" 
       placeholder="Enter name" 
       required 
-      defaultValue={user.EmpName}
+      defaultValue={user?.EmpName}
       className="w-full p-2.5 text-base border
       border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
      </div>
@@ -68,7 +68,7 @@ const EditUser = () => {
       name="EmpAge" 
       placeholder="Enter name" 
       required 
-      defaultValue={user.EmpAge}
+      defaultValue={user?.EmpAge}
       className="w-full p-2.5 text-base border
       border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
      </div>
@@ -76,7 +76,7 @@ const EditUser = () => {
       <label htmlFor="EmpDept" className="block text-sm font-medium text-gray-700 mb-1">Dept</label>
       <select name="EmpDept" id="EmpDept"  placeholder="Enter Dept" required className="w-full p-2.5 text-base border
       border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-      defaultValue={user.EmpDept}>
+      defaultValue={user?.EmpDept}>
         <option value="">Select Dept</option> 
         <option value="Software">Software</option>
         <option value="Marketing">Marketing</option>
