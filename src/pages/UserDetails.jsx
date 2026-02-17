@@ -3,18 +3,19 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UserDetail = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const { Id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { data: user, isLoading, error,
   } = useQuery({
    queryKey: ["user", Id],
-   queryFn: () => axios.get(`http://localhost:5000/api/users/${Id}`   
+   queryFn: () => axios.get(`${API_URL}/api/users/${Id}`   
    ).then((res) => res.data),
   });
 
   const deleteMutation = useMutation({
-    mutationFn: () => axios.delete(`http://localhost:5000/api/users/${Id}`
+    mutationFn: () => axios.delete(`${API_URL}/api/users/${Id}`
     ),
     onSuccess: () => {
      queryClient.invalidateQueries(["users"]);
@@ -47,7 +48,7 @@ const UserDetail = () => {
         rounded-lg p-4 border border-gray-100">
          <img 
           className="w-32 h-32 object-cover rounded-full"
-          src={`http://localhost:5000/uploads/${user.photo}`} 
+          src={`${API_URL}/uploads/${user.photo}`} 
           alt={user.photo}  
           onError={(e) => { 
            e.target.onerror = null;
