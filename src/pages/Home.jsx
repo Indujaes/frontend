@@ -4,6 +4,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const API_URL = 
+  process.env.REACT_APP_API_URL;
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
@@ -24,7 +26,7 @@ const Home = () => {
   const { data, isLoading, error } = useQuery({
     queryKey: ["users", page, search],
     queryFn: () => 
-      axios.get(`http://localhost:5000/api/users`, {
+      axios.get(`${API_URL}/api/users`, {
         params: { page, search: search || undefined },
      })
      .then((res) => res.data),

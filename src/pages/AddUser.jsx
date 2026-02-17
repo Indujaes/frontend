@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
+  const API_URL = 
+  process.env.REACT_APP_API_URL;
   const [preview, setPreview] = useState(false);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -21,7 +23,7 @@ const handleFileChange =(e) => {
 };
 
 const mutation = useMutation({
-  mutationFn: (formData) => axios.post("http://localhost:5000/api/users", formData, { headers: { "Content-Type": "multipart/form-data" }
+  mutationFn: (formData) => axios.post(`${API_URL}/api/users`, formData, { headers: { "Content-Type": "multipart/form-data" }
   }),
   onSuccess: () => {
    queryClient.invalidateQueries(["users"]);
