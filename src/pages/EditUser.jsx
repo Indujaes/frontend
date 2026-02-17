@@ -4,18 +4,19 @@ import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const EditUser = () => {
+  const API_URL = process.env.REACT_APP_API_URL;
   const {Id} = useParams();
   const navigate = useNavigate(); 
   const queryClient = useQueryClient();
   const [preview, setPreview] = useState(null);
   const { data:user, error, isLoading } = useQuery({
    queryKey: ["user", Id],
-   queryFn: () => axios.get(`http://localhost:5000/api/users/${Id}`).then((res) => res.data),
+   queryFn: () => axios.get(`${API_URL}/api/users/${Id}`).then((res) => res.data),
   });
    
   const mutation =  useMutation({
     mutationFn: (formData) => 
-      axios.put(`http://localhost:5000/api/users/${Id}`, formData, {
+      axios.put(`{API_URL}/api/users/${Id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       }),
     onSuccess: () => {
@@ -101,7 +102,7 @@ const EditUser = () => {
         {preview ? ( <img src={preview} className="max-h-50 object-contain" /> ): 
          user.photo ? ( <img
           className="w-32 h-32 object-cover rounded-full"
-          src={`http://localhost:5000/uploads/${user.photo}`} alt={user.photo}
+          src={`${API_URL}/uploads/${user.photo}`} alt={user.photo}
          onError={(e) => { 
            e.target.onerror = null;
            e.target.src = "./user.png";
