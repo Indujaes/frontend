@@ -28,6 +28,10 @@ const EditUser = () => {
   const handleSubmit = (e) => { 
     e.preventDefault();
     const formData = new FormData(e.target);
+    if (preview) {
+    } else if (user && user.photo) {
+      formData.append("photo", user.photo);
+    }
     mutation.mutate(formData);
   };
 
