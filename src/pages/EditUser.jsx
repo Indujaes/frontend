@@ -3,12 +3,14 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+
 const EditUser = () => {
   const API_URL ="https://crud-backend-1-547y.onrender.com";
   const {id} = useParams();
   const navigate = useNavigate(); 
   const queryClient = useQueryClient();
   const [preview, setPreview] = useState(null);
+  const [photoDisplay, setPhotoDisplay] = useState(null);
   const { data:user, error, isLoading } = useQuery({
    queryKey: ["user", id],
    queryFn: () => axios.get(`${API_URL}/api/users/${id}`).then((res) => res.data),
