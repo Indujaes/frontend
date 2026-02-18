@@ -4,8 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Home = () => {
-  const API_URL = 
-  process.env.REACT_APP_API_URL;
+  const API_URL = "https://crud-backend-1-547y.onrender.com";
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [searchTerm, setSearchTerm] = useState("");

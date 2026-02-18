@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UserDetail = () => {
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = "https://crud-backend-1-547y.onrender.com";
   const { Id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
