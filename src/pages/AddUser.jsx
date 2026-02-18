@@ -53,13 +53,13 @@ const AddUser = () => {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label htmlFor="empname" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="EmpName" className="block text-sm font-medium text-gray-700 mb-1">
             Name
           </label>
           <input
             type="text"
-            id="empname"
-            name="empname"
+            id="EmpName"
+            name="EmpName"
             placeholder="Enter name"
             required
             className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -67,13 +67,13 @@ const AddUser = () => {
         </div>
 
         <div>
-          <label htmlFor="empage" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="EmpAge" className="block text-sm font-medium text-gray-700 mb-1">
             Age
           </label>
           <input
             type="number"
-            id="empage"
-            name="empage"
+            id="EmpAge"
+            name="EmpAge"
             placeholder="Enter age"
             required
             className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -81,12 +81,12 @@ const AddUser = () => {
         </div>
 
         <div>
-          <label htmlFor="empdept" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="EmpDept" className="block text-sm font-medium text-gray-700 mb-1">
             Dept
           </label>
           <select
-            id="empdept"
-            name="empdept"
+            id="EmpDept"
+            name="EmpDept"
             required
             className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
           >
