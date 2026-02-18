@@ -53,7 +53,7 @@ const AddUser = () => {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label htmlFor="empName" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="empname" className="block text-sm font-medium text-gray-700 mb-1">
             Name
           </label>
           <input
