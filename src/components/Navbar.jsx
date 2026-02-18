@@ -1,21 +1,31 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";  // import Navbar
-import Home from "./pages/Home";
-import AddUser from "./pages/AddUser";
-import EditUser from "./pages/EditUser";
+import { Link, useLocation } from "react-router-dom";
 
-function App() {
+const Navbar = () => {
+  const location=useLocation();
   return (
-    <BrowserRouter>
-      <Navbar />   {/* Put it here at the top */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/add" element={<AddUser />} />
-        <Route path="/edit/:id" element={<EditUser />} />
-      </Routes>
-    </BrowserRouter>
+  <nav className="bg-[#333] p-4 fixed top-0 w-full 
+  flex justify-between items-center z-50 
+  shadow-md">
+    <div className="text-white text-lg 
+    uppercase tracking-wider 
+    font-semibold">User Management </div>
+    <ul className="flex gap-4">  
+      <li>
+        <Link className={`text-white no-underline px-4 py-2 transition-colors duration-300 
+          rounded hover:bg-[#555]  ${location.pathname === "/" ? "bg-[#555]": ""}`} to="/">
+          Home
+        </Link>
+      </li>
+    <li>
+      <Link to="/add" className={`text-white e px-4 py-2 transition-colors duration-300 
+        rounded hover:bg-[#555]  ${location.pathname === "/add" ? "bg-[#555]": ""}`}>
+        Add User
+     </Link>
+    </li>
+   </ul>
+  </nav>
   );
-}
+};
 
-export default App;
+export default Navbar;
