@@ -4,18 +4,18 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 const UserDetail = () => {
   const API_URL = "https://crud-backend-1-547y.onrender.com";
-  const { Id } = useParams();
+  const { id } = useParams();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { data: user, isLoading, error,
   } = useQuery({
-   queryKey: ["user", Id],
-   queryFn: () => axios.get(`${API_URL}/api/users/${Id}`   
+   queryKey: ["user", id],
+   queryFn: () => axios.get(`${API_URL}/api/users/${id}`   
    ).then((res) => res.data),
   });
 
   const deleteMutation = useMutation({
-    mutationFn: () => axios.delete(`${API_URL}/api/users/${Id}`
+    mutationFn: () => axios.delete(`${API_URL}/api/users/${id}`
     ),
     onSuccess: () => {
      queryClient.invalidateQueries(["users"]);
@@ -60,20 +60,20 @@ const UserDetail = () => {
      <div className="w-full space-y-4 mb-8">
       <div className="flex items-center border-b border-gray-100 pb-2">
         <span className="w-24 font-medium text-gray-500 ">Name</span>
-        <span className="text-lg text-[#333] font-semibold">{user.EmpName}</span>
+        <span className="text-lg text-[#333] font-semibold">{user.empname}</span>
       </div>
       <div className="flex items-center border-b border-gray-100 pb-2">
         <span className="w-24 font-medium text-gray-500">Age</span>
-        <span className="text-lg text-[#333] font-semibold" >{user.EmpAge}</span>
+        <span className="text-lg text-[#333] font-semibold" >{user.empage}</span>
       </div>
       <div className="flex items-center border-b border-gray-100 pb-2"> 
         <span className="w-24 font-medium text-gray-500">Dept</span>
-        <span className="text-lg text-[#333] font-semibold">{user.EmpDept}</span>
+        <span className="text-lg text-[#333] font-semibold">{user.empdept}</span>
       </div>
      </div>
      <div className="flex flex-wrap gap-3 w-full">
       <Link className="flex-1 text-center py-2.5 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 
-      transition-colors" to={`/edit/${user.Id}`}>
+      transition-colors" to={`/edit/${user.id}`}>
         Edit Details</Link>
       <button className="flex-1 py-2.5 bg-red-600 text-white font-medium rounded hover:bg-red-700
        transition-colors disabled:bg-gray-400" onClick={handleDelete}>Delete User</button>

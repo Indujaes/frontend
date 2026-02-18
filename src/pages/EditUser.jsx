@@ -5,24 +5,24 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const EditUser = () => {
   const API_URL ="https://crud-backend-1-547y.onrender.com";
-  const {Id} = useParams();
+  const {id} = useParams();
   const navigate = useNavigate(); 
   const queryClient = useQueryClient();
   const [preview, setPreview] = useState(null);
   const { data:user, error, isLoading } = useQuery({
-   queryKey: ["user", Id],
-   queryFn: () => axios.get(`${API_URL}/api/users/${Id}`).then((res) => res.data),
+   queryKey: ["user", id],
+   queryFn: () => axios.get(`${API_URL}/api/users/${id}`).then((res) => res.data),
   });
    
   const mutation =  useMutation({
     mutationFn: (formData) => 
-      axios.put(`${API_URL}/api/users/${Id}`, formData, {
+      axios.put(`${API_URL}/api/users/${id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       }),
     onSuccess: () => {
       queryClient.invalidateQueries(["users"]);
-      queryClient.invalidateQueries(["user", Id]);
-      navigate(`/user/${Id}`);
+      queryClient.invalidateQueries(["user", id]);
+      navigate(`/user/${id}`);
     },
   });
   const handleSubmit = (e) => { 
@@ -49,34 +49,34 @@ const EditUser = () => {
     <h2 className="text-xl font-semibold text-[#333] border-b border-gray-200 pb-4 mb-6">Edit User Details</h2>
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
-      <label htmlFor="EmpName" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+      <label htmlFor="empname" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
       <input 
       type="text" 
-      id="EmpName" 
-      name="EmpName" 
+      id="empname" 
+      name="empname" 
       placeholder="Enter name" 
       required 
-      defaultValue={user?.EmpName}
+      defaultValue={user?.empname}
       className="w-full p-2.5 text-base border
       border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
      </div>
      <div>
-      <label htmlFor="EmpAge" className="block text-sm font-medium text-gray-700 mb-1">Age</label>
+      <label htmlFor="empage" className="block text-sm font-medium text-gray-700 mb-1">Age</label>
       <input 
       type="text" 
-      id="EmpAge" 
-      name="EmpAge" 
+      id="empage" 
+      name="empage" 
       placeholder="Enter name" 
       required 
-      defaultValue={user?.EmpAge}
+      defaultValue={user?.empage}
       className="w-full p-2.5 text-base border
       border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all" />
      </div>
      <div>
-      <label htmlFor="EmpDept" className="block text-sm font-medium text-gray-700 mb-1">Dept</label>
-      <select name="EmpDept" id="EmpDept"  placeholder="Enter Dept" required className="w-full p-2.5 text-base border
+      <label htmlFor="empdept" className="block text-sm font-medium text-gray-700 mb-1">Dept</label>
+      <select name="empdept" id="empdept"  placeholder="Enter Dept" required className="w-full p-2.5 text-base border
       border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-      defaultValue={user?.EmpDept}>
+      defaultValue={user?.empdept}>
         <option value="">Select Dept</option> 
         <option value="Software">Software</option>
         <option value="Marketing">Marketing</option>
@@ -88,7 +88,7 @@ const EditUser = () => {
         <option value="Others">Others</option>
        </select>
       </div> 
-      <div>
+      {/* <div>
        <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-1">
         Photo</label>
        <input 
@@ -109,7 +109,7 @@ const EditUser = () => {
         }}
          /> ) : ( <span className="text-gray-400 text-sm">Upload Your Image</span>)} 
        </div>
-     </div>
+     </div> */}
     <div className="pt-2 flex gap-3">
       <button 
       type ="submit"

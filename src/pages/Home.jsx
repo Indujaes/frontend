@@ -72,12 +72,12 @@ const Home = () => {
         <tbody>
           {data?.users?.length > 0 ? (
             data.users.map((user) => (
-              <tr key={user.Id}>
-                <td className="p-4 text-[#333]">{user.EmpName}</td>
-                <td className="p-4 text-[#333]">{user.EmpAge}</td>
-                <td className="p-4 text-[#333]">{user.EmpDept}</td>
+              <tr key={user.id}>
+                <td className="p-4 text-[#333]">{user.empname}</td>
+                <td className="p-4 text-[#333]">{user.empage}</td>
+                <td className="p-4 text-[#333]">{user.empdept}</td>
                 <td className="p-4 text-center">
-                  <Link to={`/user/${user.Id}`}
+                  <Link to={`/user/${user.id}`}
                       className="inline-block px-3 py-1.5 bg-green-600 text-white no-underline rounded hover:bg-green-700 transition-colors text-sm">
                         View
                    </Link> 

@@ -102,7 +102,7 @@ const AddUser = () => {
           </select>
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-1">
             Photo
           </label>
@@ -121,7 +121,7 @@ const AddUser = () => {
               <span className="text-gray-400 text-sm">Upload Your Image</span>
             )}
           </div>
-        </div>
+        </div> */}
 
         <div className="mt-2">
           <button
