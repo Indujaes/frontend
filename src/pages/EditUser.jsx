@@ -88,7 +88,7 @@ const EditUser = () => {
         <option value="Others">Others</option>
        </select>
       </div> 
-      {/* <div>
+      <div>
        <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-1">
         Photo</label>
        <input 
@@ -109,7 +109,7 @@ const EditUser = () => {
         }}
          /> ) : ( <span className="text-gray-400 text-sm">Upload Your Image</span>)} 
        </div>
-     </div> */}
+     </div> 
     <div className="pt-2 flex gap-3">
       <button 
       type ="submit"

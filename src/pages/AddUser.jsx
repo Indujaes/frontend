@@ -53,13 +53,13 @@ const AddUser = () => {
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label htmlFor="EmpName" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="empName" className="block text-sm font-medium text-gray-700 mb-1">
             Name
           </label>
           <input
             type="text"
-            id="EmpName"
-            name="EmpName"
+            id="empname"
+            name="empname"
             placeholder="Enter name"
             required
             className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -67,13 +67,13 @@ const AddUser = () => {
         </div>
 
         <div>
-          <label htmlFor="EmpAge" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="empage" className="block text-sm font-medium text-gray-700 mb-1">
             Age
           </label>
           <input
             type="number"
-            id="EmpAge"
-            name="EmpAge"
+            id="empage"
+            name="empage"
             placeholder="Enter age"
             required
             className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
@@ -81,12 +81,12 @@ const AddUser = () => {
         </div>
 
         <div>
-          <label htmlFor="EmpDept" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="empdept" className="block text-sm font-medium text-gray-700 mb-1">
             Dept
           </label>
           <select
-            id="EmpDept"
-            name="EmpDept"
+            id="empdept"
+            name="empdept"
             required
             className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
           >
@@ -102,7 +102,7 @@ const AddUser = () => {
           </select>
         </div>
 
-        {/* <div>
+         <div>
           <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-1">
             Photo
           </label>
@@ -121,7 +121,7 @@ const AddUser = () => {
               <span className="text-gray-400 text-sm">Upload Your Image</span>
             )}
           </div>
-        </div> */}
+        </div> 
 
         <div className="mt-2">
           <button
