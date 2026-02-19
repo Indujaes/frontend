@@ -9,23 +9,26 @@ const EditUser = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const [preview, setPreview] = useState(null); // new photo preview
-  const [displayPhoto, setDisplayPhoto] = useState(null); // stable photo display
+  // States
+  const [preview, setPreview] = useState(null);
+  const [displayPhoto, setDisplayPhoto] = useState(null);
 
   // Fetch user data
   const { data: user, error, isLoading } = useQuery({
     queryKey: ["user", id],
     queryFn: () => axios.get(`${API_URL}/api/users/${id}`).then((res) => res.data),
+    refetchOnWindowFocus: false, // prevent auto refetch
+    refetchOnMount: false,       // prevent auto refetch on mount
   });
 
-  // Initialize displayPhoto once after user loads
+  // Initialize displayPhoto once
   useEffect(() => {
     if (user && user.photo && !displayPhoto) {
       setDisplayPhoto(`${API_URL}/uploads/${user.photo}`);
     }
   }, [user, displayPhoto]);
 
-  // Update mutation
+  // Mutation
   const mutation = useMutation({
     mutationFn: (formData) =>
       axios.put(`${API_URL}/api/users/${id}`, formData, {
@@ -51,13 +54,13 @@ const EditUser = () => {
     mutation.mutate(formData);
   };
 
-  // Handle file selection
+  // Handle file change
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
       const url = URL.createObjectURL(file);
       setPreview(url);
-      setDisplayPhoto(url); // update display immediately
+      setDisplayPhoto(url);
     }
   };
 
@@ -114,7 +117,6 @@ const EditUser = () => {
           <select
             name="empdept"
             id="empdept"
-            placeholder="Enter Dept"
             required
             defaultValue={user?.empdept}
             className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
