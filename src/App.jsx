@@ -8,21 +8,23 @@ import UserDetails from "./pages/UserDetails";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
-
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <BrowserRouter>
-      <Navbar />
-      <div className="mt-20">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/add" element={<AddUser />} />
-          <Route path="/edit/:id" element={<EditUser />} />
-          <Route path="/user/:id" element={<UserDetails />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+const App = () => {
+  return (
+   <QueryClientProvider client={queryClient}>
+    <BrowserRouter> 
+     <Navbar />
+     <div className="mx-auto mt-4">
+       <Routes>
+        <Route path ="/" element={<Home />} /> 
+        <Route path ="/add" element={<AddUser />} /> 
+        <Route path ="/edit/:id" element={<EditUser />} /> 
+        <Route path ="/user/:id" element={<UserDetails />} /> 
+       </Routes>
+  </div>
+  </BrowserRouter>
   </QueryClientProvider>
-);
+  );
+};
+
 
 export default App;

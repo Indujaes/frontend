@@ -9,66 +9,77 @@ const AddUser = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
+  // File preview
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    if (file) setPreview(URL.createObjectURL(file));
+    if (file) {
+      setPreview(URL.createObjectURL(file));
+    }
   };
 
+  // Mutation
   const mutation = useMutation({
     mutationFn: (formData) =>
       axios.post(`${API_URL}/api/users`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       }),
     onSuccess: () => {
-      queryClient.invalidateQueries(["users"]);
-      navigate("/");
+      queryClient.invalidateQueries(["users"]); // refresh user list
+      navigate("/"); // go back to home
+    },
+    onError: (error) => {
+      alert("Error adding user: " + error.message);
     },
   });
 
+  // Form submit
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
+
+    // Debug: check FormData fields
+    for (let pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
     mutation.mutate(formData);
   };
 
   return (
-    <section className="max-w-3xl mx-auto mt-28 mb-12 p-5 bg-white shadow-sm rounded-lg border border-gray-100">
+    <section className="max-w-125 mx-auto mt-24 mb-12 p-5 bg-white shadow-sm rounded-lg border border-gray-100">
       <h2 className="text-xl font-semibold text-[#333] border-b border-gray-200 pb-4 mb-6">
         New User Registration
       </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-        {/* Name & Age */}
-        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
-          <div className="flex-1">
-            <label htmlFor="empname" className="block text-sm font-medium text-gray-700 mb-1">
-              Name
-            </label>
-            <input
-              type="text"
-              name="empname"
-              id="empname"
-              placeholder="Enter name"
-              required
-              className="w-full p-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-            />
-          </div>
-          <div className="flex-1">
-            <label htmlFor="empage" className="block text-sm font-medium text-gray-700 mb-1">
-              Age
-            </label>
-            <input
-              type="number"
-              name="empage"
-              id="empage"
-              placeholder="Enter age"
-              required
-              className="w-full p-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label htmlFor="empname" className="block text-sm font-medium text-gray-700 mb-1">
+            Name
+          </label>
+          <input
+            type="text"
+            id="empname"
+            name="empname"
+            placeholder="Enter name"
+            required
+            className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+          />
         </div>
 
-        {/* Dept */}
+        <div>
+          <label htmlFor="empage" className="block text-sm font-medium text-gray-700 mb-1">
+            Age
+          </label>
+          <input
+            type="number"
+            id="empage"
+            name="empage"
+            placeholder="Enter age"
+            required
+            className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+          />
+        </div>
+
         <div>
           <label htmlFor="empdept" className="block text-sm font-medium text-gray-700 mb-1">
             Dept
@@ -77,7 +88,7 @@ const AddUser = () => {
             id="empdept"
             name="empdept"
             required
-            className="w-full p-2.5 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+            className="w-full p-2.5 text-base border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
           >
             <option value="">Select Dept</option>
             <option value="Software">Software</option>
@@ -91,8 +102,7 @@ const AddUser = () => {
           </select>
         </div>
 
-        {/* Photo */}
-        <div>
+         <div>
           <label htmlFor="photo" className="block text-sm font-medium text-gray-700 mb-1">
             Photo
           </label>
@@ -104,29 +114,21 @@ const AddUser = () => {
             onChange={handleFileChange}
             className="w-full p-2.5 text-sm text-gray-500 bg-gray-50 border border-gray-300 rounded cursor-pointer focus:outline-none"
           />
-          <div className="mt-2 h-32 flex justify-center items-center border border-dashed border-gray-300 rounded bg-gray-50 overflow-hidden">
+          <div className="mt-3 min-h-25 flex justify-center items-center border border-dashed border-gray-300 rounded bg-gray-50 overflow-hidden">
             {preview ? (
-              <img src={preview} alt="Preview" className="h-32 w-32 object-cover rounded-full" />
+              <img src={preview} className="max-h-50 object-contain" />
             ) : (
               <span className="text-gray-400 text-sm">Upload Your Image</span>
             )}
           </div>
-        </div>
+        </div> 
 
-        {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-3 mt-2">
+        <div className="mt-2">
           <button
             type="submit"
-            className="flex-1 py-3 bg-green-600 text-white rounded hover:bg-green-700 transition-all"
+            className="w-full py-3 bg-green-600 text-white font-medium rounded hover:bg-green-700 active:scale-[0.98] transition-all disabled:bg-gray-400 disabled:cursor-not-allowed"
           >
-            Save
-          </button>
-          <button
-            type="button"
-            onClick={() => navigate(-1)}
-            className="flex-1 py-3 bg-gray-500 text-white rounded hover:bg-gray-600 transition-all"
-          >
-            Cancel
+            Save Details
           </button>
         </div>
       </form>
